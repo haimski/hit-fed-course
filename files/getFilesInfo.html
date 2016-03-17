@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<input type="file" id="files" multiple />
+<output id="filesdetails"></output>
+<script>
+    function showFilesDetailes(event)
+    {
+    //retrieving a FileList object
+        var files = event.target.files;
+    //creating an array of strings that describe the selected files
+        var strings = [];
+        for (var i = 0, file; file = files[i]; i++) {
+            strings.push("<li>name="+file.name+" type="+ file.type
+                    +" size= bytes" + file.size + " last modified: "
+                    + file.lastModifiedDate +" </li>");
+        }
+        document.getElementById('filesdetails').innerHTML = '<ul>' + strings.join('') + '</ul>';
+    }
+    document.getElementById('files').addEventListener('change', showFilesDetailes);
+</script>
+
+</body>
+</html>

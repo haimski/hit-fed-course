@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>check support for html5 file api</title>
+</head>
+<body>
+<script type="text/javascript">
+    if (window.File
+            && window.FileReader
+            && window.FileList
+            && window.Blob)
+    {
+        document.write("All of the HTML5 File APIs are supported");
+    }
+    else
+    {
+        document.write("HTML5 File APIs are not fully supported");
+    }
+</script>
+</body>
+</html>

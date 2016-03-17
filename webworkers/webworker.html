@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="worker">
+    <h2>Simple Web Worker Code Sample</h2>
+    <p>calculating the total number of prime numbers in between 1 and 100000</p>
+    <div id="total">1</div>
+    <script>
+        var worker = new Worker('background.js');
+        worker.onmessage = updateResult;
+        function updateResult(event)
+        {
+            document.getElementById('total').innerHTML = event.data;
+        };
+    </script>
+</div>
+<div id="worker1">
+    <h2>Simple Web Worker Code Sample</h2>
+    <p>calculating the total of prime numbers in between 1 and 1000000</p>
+    <div id="total">1</div>
+    <script type="text/javascript">
+        var worker = new Worker('background.js');
+        worker.addEventListener('message', function(event)
+                {
+                    document.getElementById('total').innerHTML = event.data;
+                }
+        );
+    </script>
+</div>
+</body>
+</html>

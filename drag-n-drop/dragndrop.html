@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="drop_down_area"><h1>Drop files here</h1></div>
+<output id="filesdetails"></output>
+<script>
+    function showFilesData(event)
+    {
+//stop the event propagation to other elements
+        event.stopPropagation();
+//prevent the default behavior of the web browser
+        event.preventDefault();
+//retrieving a FileList object
+        var files = event.dataTransfer.files;
+//iterating the File object held by the FileList object
+        var strings = [];
+        for (var i = 0, file; file = files[i]; i++) {
+            strings.push("<li>name="+file.name+" type="+ file.type
+                    +" size= bytes" + file.size + " last modified: "
+                    + file.lastModifiedDate +" </li>");
+        }
+        document.getElementById('filesdetails').innerHTML = '<ul>' +
+                strings.join('') + '</ul>';
+    }
+
+    function handleFilesDrag(event)
+    {
+        event.stopPropagation();
+        event.preventDefault();
+    }
+    //setting up the drop listener
+    var dropDownArea = document.getElementById('drop_down_area');
+    dropDownArea.addEventListener('drop', showFilesData);
+    dropDownArea.addEventListener('dragover', handleFilesDrag);
+</script>
+</body>
+</html>
